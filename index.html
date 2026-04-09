@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 100 Claude Code Skills — April 2026</title>
+<meta name="description" content="The 100 most popular new Claude Code skills and skill packs from GitHub and the plugin marketplace. Cards, details, use cases, direct links.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fcfcfb;
+    --fg: #0c0c0d;
+    --fg-muted: #57575a;
+    --fg-subtle: #8a8a8e;
+    --border: #e8e7e4;
+    --border-strong: #d1d0cd;
+    --accent: #0c0c0d;
+    --accent-soft: #f3f3f1;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius: 14px;
+    --radius-lg: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    font-feature-settings: "cv11", "ss01";
+  }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  /* ============ HEADER ============ */
+  header.hero {
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    padding: clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px);
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--fg-muted);
+    background: var(--accent-soft);
+    padding: 6px 12px; border-radius: 100px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: ""; width: 6px; height: 6px; background: #10b981; border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+  }
+  h1.title {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    margin-bottom: 20px;
+    max-width: 880px;
+  }
+  h1.title .gradient {
+    background: linear-gradient(90deg, #0c0c0d 0%, #404045 50%, #0c0c0d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lede {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--fg-muted);
+    max-width: 680px;
+    margin-bottom: 32px;
+    line-height: 1.55;
+  }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px);
+    padding-top: 32px; border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700; letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--fg-subtle);
+    text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;
+  }
+
+  /* ============ FILTER BAR ============ */
+  .filter-bar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 249, 0.88);
+    backdrop-filter: saturate(1.8) blur(20px);
+    -webkit-backdrop-filter: saturate(1.8) blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .filter-row { display: flex; gap: 12px; align-items: center; }
+  .search-wrap { flex: 1; position: relative; }
+  .search-wrap svg {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--fg-subtle); pointer-events: none;
+  }
+  input.search {
+    width: 100%; padding: 12px 16px 12px 42px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 100px;
+    font-size: 14px; font-family: inherit;
+    color: var(--fg);
+    transition: all 0.15s;
+  }
+  input.search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(12,12,13,0.08);
+  }
+  .category-scroll {
+    display: flex; gap: 8px; overflow-x: auto;
+    padding: 12px 0 4px;
+    scrollbar-width: thin;
+  }
+  .category-scroll::-webkit-scrollbar { height: 4px; }
+  .category-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+  .chip {
+    flex: 0 0 auto;
+    padding: 7px 14px; border-radius: 100px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    font-size: 13px; font-weight: 500;
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: all 0.12s;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--border-strong); color: var(--fg); }
+  .chip.active {
+    background: var(--fg);
+    color: #fff;
+    border-color: var(--fg);
+  }
+  .chip .count {
+    font-size: 11px; opacity: 0.6; margin-left: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ============ GRID ============ */
+  main { padding: 40px 0 80px; }
+  .grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.2s;
+    position: relative;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
+  }
+  .card-rank {
+    position: absolute; top: 18px; right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--fg-subtle);
+    letter-spacing: 0.04em;
+  }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .card-type-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 9px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+  }
+  .badge.type-pack { background: #f5f3ff; color: #6d28d9; border-color: #e9e4ff; }
+  .badge.type-skill { background: #f0fdf4; color: #15803d; border-color: #dcfce7; }
+  .badge.type-plugin { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+  .badge.type-tool { background: #eff6ff; color: #1d4ed8; border-color: #dbeafe; }
+  .badge.cat {
+    background: var(--accent-soft);
+    color: var(--fg-muted);
+    border-color: var(--border);
+  }
+  .card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+    line-height: 1.25;
+    padding-right: 36px;
+  }
+  .card .author {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fg-subtle);
+    margin-bottom: 12px;
+  }
+  .card .tagline {
+    font-size: 14px;
+    color: var(--fg);
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .card .desc {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 14px; border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .stars {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 12px; color: var(--fg-muted); font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .link {
+    font-size: 12px; font-weight: 600; color: var(--fg);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .link:hover { text-decoration: underline; }
+
+  /* ============ MODAL ============ */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(12,12,13,0.55);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: flex-start; justify-content: center;
+    padding: 5vh 20px;
+    overflow-y: auto;
+  }
+  .modal-backdrop.open { display: flex; animation: fadeIn 0.18s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    max-width: 720px; width: 100%;
+    padding: clamp(24px, 4vw, 44px);
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.22s ease-out;
+  }
+  @keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .modal-close {
+    float: right;
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--fg-muted);
+    transition: all 0.15s;
+  }
+  .modal-close:hover { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .modal h2 {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    padding-right: 48px;
+  }
+  .modal .author { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--fg-subtle); margin-bottom: 20px; }
+  .modal .tagline {
+    font-size: 17px; color: var(--fg); font-weight: 500;
+    padding: 16px 18px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--fg);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .modal .section-title {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--fg-subtle);
+    margin: 24px 0 10px;
+  }
+  .modal p {
+    font-size: 15px;
+    color: var(--fg-muted);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+  .modal ul { list-style: none; padding: 0; margin: 0; }
+  .modal ul li {
+    font-size: 14px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+    padding: 10px 0 10px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .modal ul li:last-child { border-bottom: none; }
+  .modal ul li::before {
+    content: "→";
+    position: absolute; left: 6px; top: 10px;
+    color: var(--fg-subtle); font-weight: 600;
+  }
+  .modal-footer {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 20px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--fg);
+    transition: all 0.12s;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .btn-primary { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .btn-primary:hover { background: #2a2a2e; border-color: #2a2a2e; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 60px;
+    text-align: center;
+    color: var(--fg-subtle);
+    font-size: 13px;
+  }
+  footer a { color: var(--fg-muted); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+  footer a:hover { color: var(--fg); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 20px; }
+    .modal { padding: 28px 22px; }
+    .stats { gap: 24px; }
+    h1.title { font-size: 32px; }
+  }
+
+  .no-results { text-align: center; padding: 80px 20px; color: var(--fg-subtle); font-size: 15px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">April 2026 · Curated from GitHub</div>
+    <h1 class="title"><span class="gradient">The Top 100 Claude Code Skills<br>&amp; Skill Packs</span></h1>
+    <p class="lede">A curated showcase of the most popular new skills and skill packs trending in the plugin marketplace and on GitHub. Filtered to exclude skills already in a standard Claude Code install — so every entry is a genuinely new capability to add.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="stat-total">100</div><div class="stat-label">Skills &amp; Packs</div></div>
+      <div class="stat"><div class="stat-num" id="stat-cats">20</div><div class="stat-label">Categories</div></div>
+      <div class="stat"><div class="stat-num" id="stat-stars">1.1M+</div><div class="stat-label">Combined Stars</div></div>
+      <div class="stat"><div class="stat-num" id="stat-updated">Apr 2026</div><div class="stat-label">Last Updated</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-row">
+      <div class="search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input class="search" id="search" type="search" placeholder="Search 100 skills by name, category, or description…" autocomplete="off">
+      </div>
+    </div>
+    <div class="category-scroll" id="categories"></div>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="grid" id="grid"></div>
+    <div class="no-results" id="noResults" style="display:none;">No skills match your filters.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    Built by <a href="https://github.com/alimabsoute">@alimabsoute</a> with Claude Code &middot; Data harvested from GitHub public repos &middot; <a href="https://github.com/alimabsoute/claude-skills-100">View source</a>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const grid = document.getElementById('grid');
+  const categoriesEl = document.getElementById('categories');
+  const searchEl = document.getElementById('search');
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const noResults = document.getElementById('noResults');
+
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function formatStars(n){
+    if (!n) return '';
+    if (n >= 1000) return (n/1000).toFixed(n < 10000 ? 1 : 0).replace(/\.0$/,'') + 'k';
+    return String(n);
+  }
+
+  function categoryCounts(){
+    const counts = { all: SKILLS.length };
+    SKILLS.forEach(s => { counts[s.category] = (counts[s.category]||0) + 1; });
+    return counts;
+  }
+
+  function renderCategories(){
+    const counts = categoryCounts();
+    categoriesEl.innerHTML = CATEGORIES
+      .filter(c => counts[c.key] > 0 || c.key === 'all')
+      .map(c => `
+        <button class="chip ${c.key === activeCategory ? 'active':''}" data-cat="${c.key}">
+          ${escapeHtml(c.label)}<span class="count">${counts[c.key]||0}</span>
+        </button>
+      `).join('');
+    categoriesEl.querySelectorAll('.chip').forEach(el => {
+      el.addEventListener('click', () => {
+        activeCategory = el.dataset.cat;
+        renderCategories();
+        renderGrid();
+      });
+    });
+  }
+
+  function filtered(){
+    const q = searchQuery.trim().toLowerCase();
+    return SKILLS.filter(s => {
+      if (activeCategory !== 'all' && s.category !== activeCategory) return false;
+      if (!q) return true;
+      const hay = (s.name + ' ' + s.tagline + ' ' + s.description + ' ' + (s.author||'') + ' ' + s.category).toLowerCase();
+      return hay.includes(q);
+    });
+  }
+
+  function renderGrid(){
+    const items = filtered();
+    noResults.style.display = items.length ? 'none' : 'block';
+    grid.innerHTML = items.map(s => `
+      <article class="card" data-id="${s.id}">
+        <div class="card-rank">#${String(s.id).padStart(3,'0')}</div>
+        <div class="card-top">
+          <div class="card-type-badges">
+            <span class="badge type-${s.type}">${s.type}</span>
+            <span class="badge cat">${escapeHtml(s.category)}</span>
+          </div>
+        </div>
+        <h2>${escapeHtml(s.name)}</h2>
+        <div class="author">${escapeHtml(s.author || 'community')}</div>
+        <div class="tagline">${escapeHtml(s.tagline)}</div>
+        <div class="desc">${escapeHtml(s.description.slice(0, 180))}${s.description.length > 180 ? '…' : ''}</div>
+        <div class="card-footer">
+          <div class="stars">${s.stars ? `★ ${formatStars(s.stars)}` : '<span style="color:var(--fg-subtle);font-size:11px;">sub-skill</span>'}</div>
+          <span class="link">Details →</span>
+        </div>
+      </article>
+    `).join('');
+    grid.querySelectorAll('.card').forEach(el => {
+      el.addEventListener('click', () => openModal(Number(el.dataset.id)));
+    });
+  }
+
+  function openModal(id){
+    const s = SKILLS.find(x => x.id === id);
+    if (!s) return;
+    modalContent.innerHTML = `
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="card-type-badges" style="margin-bottom:12px;">
+        <span class="badge type-${s.type}">${s.type}</span>
+        <span class="badge cat">${escapeHtml(s.category)}</span>
+        ${s.stars ? `<span class="badge cat">★ ${formatStars(s.stars)}</span>` : ''}
+      </div>
+      <h2>${escapeHtml(s.name)}</h2>
+      <div class="author">${escapeHtml(s.author || 'community')}</div>
+      <div class="tagline">${escapeHtml(s.tagline)}</div>
+      <div class="section-title">What it does</div>
+      <p>${escapeHtml(s.description)}</p>
+      <div class="section-title">Details</div>
+      <p>${escapeHtml(s.details)}</p>
+      <div class="section-title">Example use cases</div>
+      <ul>
+        ${s.uses.map(u => `<li>${escapeHtml(u)}</li>`).join('')}
+      </ul>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">View on GitHub ↗</a>
+        <button class="btn" id="modalCloseBtn">Close</button>
+      </div>
+    `;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // search debounce
+  let searchT = null;
+  searchEl.addEventListener('input', e => {
+    clearTimeout(searchT);
+    searchT = setTimeout(() => { searchQuery = e.target.value; renderGrid(); }, 120);
+  });
+
+  // stats
+  const totalStars = SKILLS.reduce((a,s) => a + (s.stars||0), 0);
+  document.getElementById('stat-stars').textContent = (totalStars/1000).toFixed(0) + 'k+';
+  document.getElementById('stat-cats').textContent = new Set(SKILLS.map(s=>s.category)).size;
+
+  renderCategories();
+  renderGrid();
+})();
+</script>
+</body>
+</html>
